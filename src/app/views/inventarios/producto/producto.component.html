@@ -1,0 +1,82 @@
+<c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+        <c-card class="mb-4">
+        <c-card-header>
+          <strong>Formulario de productos</strong>
+        </c-card-header>
+        <c-card-body>
+            <form cForm>
+              <div class="mb-3">
+                <label cLabel for="producto">Nombre Producto</label>
+                <input cFormControl
+                       id="producto"
+                       placeholder="ingrese producto"
+                       type="text"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="descripcion">Descripcion</label>
+                <input cFormControl
+                       id="descripcion"
+                       placeholder="describa el producto"
+                       type="text"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="cantidades">Cantidades</label>
+                <input cFormControl
+                       id="cantidades"
+                       placeholder="asigne las cantidades"
+                       type="number"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="precio">Precio</label>
+                <input cFormControl
+                       id="precio"
+                       placeholder="asigne un precio"
+                       type="number"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="usuario">Usuario</label>
+                <select aria-label="Seleccione un usuario" cSelect>
+                  <option></option>
+                  <option value="1">Marco</option>
+                  <option value="2">Carlos</option>
+                  <option value="3">Miguel</option>
+                </select>
+              </div>
+              <button cButton class="me-1" color="primary" type="submit">
+                Guardar
+              </button>
+            </form>
+        </c-card-body>
+      </c-card>
+    </c-col>
+    <c-col xs="12">
+      <table cTable>
+        <thead cTableColor="dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (r of listaProductos; track r;){
+              
+            }
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td><button cButton color="warning" shape="rounded-pill">Editar</button><button cButton color="danger" shape="rounded-pill">Eliminar</button></td>
+          </tr>
+          
+          </tbody>
+          
+      </table>
+    </c-col>
+</c-row>

@@ -14,11 +14,34 @@ export const navItems: INavData[] = [
     title: true,
     name: 'Theme'
   },
+  ///------------------------------INVENTARIO INICIO
   {
-    name: 'Colors',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-drop' }
+    title: true,
+    name: 'Indice de productos'
   },
+  {
+    name: 'Inventario',
+    url: '/inventario',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
+      {
+        name: 'Producto',
+        url: '/inventario/producto',
+        icon: 'nav-icon-bullet'
+      },
+      {
+        name: 'Reportes',
+        url: '/inventario/reportes',
+        icon: 'nav-icon-bullet'
+      },
+    ]
+  },
+  ///------------------------------INVENTARIO FINAL
+  // {
+  //   name: 'Colors',
+  //   url: '/theme/colors',
+  //   iconComponent: { name: 'cil-drop' }
+  // },
   {
     name: 'Typography',
     url: '/theme/typography',
