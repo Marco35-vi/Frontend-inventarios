@@ -15,13 +15,16 @@ import { DocsExampleComponent } from '@docs-components/public-api';
 })
 export class ProductoComponent {
 listaProductos : ProductoModel[] = [];
-constructor(private productoService: ProductoService){
+productoModelo : ProductoModel = new ProductoModel();
 
+
+constructor(private productoService: ProductoService){
 this.getProductos();
 
 }
 
 getProductos(){
+  console.log("get productos");
   this.productoService.getProductos().subscribe({
     next : (respuesta) => {
       console.log(respuesta);
@@ -34,5 +37,55 @@ getProductos(){
   
 }
 
+guardarProducto(){
+  console.log(this.productoModelo);
+  if (this.productoModelo._id == '') {
+    console.log("guardar", this.productoModelo);
+    this.agregarProducto();
+  } else {
+    console.log("editar", this.productoModelo);
+    this.editarProducto();
+  }
 
+
+}
+agregarProducto(){
+  this.productoService.agregarProducto(this.productoModelo).subscribe({
+    next : (respuesta) => {
+        console.log("Se guardo exitosamente",respuesta);
+        this.getProductos();
+        this.productoModelo = new ProductoModel();
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  })
+}
+eliminarProducto(producto: ProductoModel){
+  console.log("itema para eliminar", producto);
+  this.productoService.eliminarProducto(producto._id).subscribe({
+    next : (respuesta) => {
+        console.log("Se elimino exitosamente",respuesta);
+        this.getProductos();
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  })
+}
+verProducto(producto: ProductoModel){
+  this.productoModelo = producto;
+}
+editarProducto(){
+  this.productoService.editarProducto(this.productoModelo).subscribe({
+    next : (respuesta) => {
+        console.log("Se edito exitosamente",respuesta);
+        this.getProductos();
+        this.productoModelo = new ProductoModel();
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  })
+}
 }

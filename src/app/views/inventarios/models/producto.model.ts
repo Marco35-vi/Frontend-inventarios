@@ -1,4 +1,5 @@
 export class ProductoModel {
+_id : string = '';
 nombreproducto : String ='';
 descripcion : String = '';
 cantidades : number = 0;

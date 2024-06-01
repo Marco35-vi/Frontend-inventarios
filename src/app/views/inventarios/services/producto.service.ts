@@ -6,11 +6,25 @@ import { ProductoModel } from '../models/producto.model';
     providedIn :'root'
 })
 export class ProductoService {
-    private API_URL = 'http://localhost:6000/inventarios'
+    private API_URL = 'http://localhost:5500/inventarios'
     constructor(private http: HttpClient){
 
     }
     getProductos ():Observable<ProductoModel[]>{
-        return this.http.get<ProductoModel[]>('${this.API_URL}/traerInventario');
+        console.log(this.API_URL);
+        return this.http.get<ProductoModel[]>(`${this.API_URL}/traerInventario`);
     }
+
+    agregarProducto(producto: ProductoModel) : Observable<ProductoModel>{
+        return this.http.post<ProductoModel>(`${this.API_URL}/agregar`, producto)
+    }
+    editarProducto(producto: ProductoModel) : Observable<ProductoModel> {
+        return this.http.put<ProductoModel>(`${this.API_URL}/editar/${producto._id}`, producto);
+      }
+    eliminarProducto(idProducto : string) : Observable<ProductoModel> {
+        console.log(idProducto);
+        // return this.http.delete<RecetaModel>(`${this.API_URL}/eliminar/${idReceta}`);
+        return this.http.delete<ProductoModel>(this.API_URL+'/eliminar/'+idProducto);
+    
+      }
 }

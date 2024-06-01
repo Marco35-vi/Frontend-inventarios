@@ -11,7 +11,9 @@
                 <input cFormControl
                        id="producto"
                        placeholder="ingrese producto"
+                       [(ngModel)] = "productoModelo.nombreproducto"
                        type="text"
+                       name="nombreproducto"
                 />
               </div>
               <div class="mb-3">
@@ -20,6 +22,8 @@
                        id="descripcion"
                        placeholder="describa el producto"
                        type="text"
+                       name="descripcion"
+                       [(ngModel)] = "productoModelo.descripcion"
                 />
               </div>
               <div class="mb-3">
@@ -28,6 +32,8 @@
                        id="cantidades"
                        placeholder="asigne las cantidades"
                        type="number"
+                       name="cantidades"
+                       [(ngModel)] = "productoModelo.cantidades"
                 />
               </div>
               <div class="mb-3">
@@ -36,18 +42,27 @@
                        id="precio"
                        placeholder="asigne un precio"
                        type="number"
+                       name="precio"
+                       [(ngModel)] = "productoModelo.precio"
                 />
               </div>
               <div class="mb-3">
                 <label cLabel for="usuario">Usuario</label>
-                <select aria-label="Seleccione un usuario" cSelect>
+                <input cFormControl
+                       id="usuario"
+                       type="text"
+                       name="usuario"
+                       [(ngModel)] = "productoModelo.usuario"
+                />
+              
+                <!-- <select [(ngModel)] = "productoModelo.usuario" aria-label="Seleccione un usuario" cSelect>
                   <option></option>
-                  <option value="1">Marco</option>
+                  <option value="664c32d2b18668228b222b2d">Marco</option>
                   <option value="2">Carlos</option>
                   <option value="3">Miguel</option>
-                </select>
+                </select> -->
               </div>
-              <button cButton class="me-1" color="primary" type="submit">
+              <button (click)="guardarProducto()" class="me-1" color="primary" type="submit">
                 Guardar
               </button>
             </form>
@@ -61,19 +76,25 @@
             <th scope="col">#</th>
             <th scope="col">Producto</th>
             <th scope="col">Descripcion</th>
+            <th scope="col">Cantidades</th>
+            <th scope="col">Precio</th>
             <th scope="col">Acciones</th>
           </tr>
           </thead>
           <tbody>
-            @for (r of listaProductos; track r;){
-              
+            @for (producto of listaProductos; track producto;){
+              <tr>
+                <th scope="row">1</th>
+                <td>{{producto.nombreproducto}}</td>
+                <td>{{producto.descripcion}}</td>
+                <td>{{producto.cantidades}}</td>
+                <td>{{producto.precio}}</td>
+                <td>
+                  <button cButton color="warning" shape="rounded-pill" (click)="verProducto(producto)">Editar</button>
+                  <button (click)="eliminarProducto(producto)" cButton color="danger" shape="rounded-pill">Eliminar</button></td>
+              </tr>
             }
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td><button cButton color="warning" shape="rounded-pill">Editar</button><button cButton color="danger" shape="rounded-pill">Eliminar</button></td>
-          </tr>
+          
           
           </tbody>
           
