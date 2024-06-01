@@ -23,7 +23,7 @@ export class ProductoService {
       }
     eliminarProducto(idProducto : string) : Observable<ProductoModel> {
         console.log(idProducto);
-        // return this.http.delete<RecetaModel>(`${this.API_URL}/eliminar/${idReceta}`);
+        // return this.http.delete<ProductoModel>(`${this.API_URL}/eliminar/${idProducto}`);
         return this.http.delete<ProductoModel>(this.API_URL+'/eliminar/'+idProducto);
     
       }
